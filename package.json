@@ -1,0 +1,23 @@
+{
+  "name": "trao-ai-travel-planner",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n web,api -c \"cyan,magenta\" \"npm run dev -w @trao/web\" \"npm run dev -w @trao/api\"",
+    "dev:web": "npm run dev -w @trao/web",
+    "dev:api": "npm run dev -w @trao/api",
+    "build": "npm run build -w @trao/web && npm run build -w @trao/api",
+    "lint": "npm run lint -w @trao/web && npm run lint -w @trao/api",
+    "typecheck": "npm run typecheck -w @trao/web && npm run typecheck -w @trao/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+
