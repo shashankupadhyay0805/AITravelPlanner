@@ -9,15 +9,15 @@ function toPublicUser(user: {
   _id: Types.ObjectId | string;
   name: string;
   email: string;
-  avatarUrl?: string;
-  bio?: string;
+  avatarUrl?: string | null;
+  bio?: string | null;
 }): PublicUser {
   return {
     id: String(user._id),
     name: user.name,
     email: user.email,
-    avatarUrl: user.avatarUrl,
-    bio: user.bio,
+    avatarUrl: user.avatarUrl ?? undefined,
+    bio: user.bio ?? undefined,
   };
 }
 
