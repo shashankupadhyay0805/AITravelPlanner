@@ -12,12 +12,22 @@ import { tripsRouter } from "./modules/trips/trips.router.js";
 
 export function createApp() {
   const app = express();
+  const normalizeOrigin = (value: string) => value.replace(/\/+$/, "");
+  const allowedOrigins = config.CORS_ORIGIN.split(",")
+    .map((x) => x.trim())
+    .filter(Boolean)
+    .map(normalizeOrigin);
 
   app.disable("x-powered-by");
   app.use(helmet());
   app.use(
     cors({
-      origin: config.CORS_ORIGIN,
+      origin: (origin, callback) => {
+        // Allow non-browser clients and same-origin requests with no Origin header.
+        if (!origin) return callback(null, true);
+        const ok = allowedOrigins.includes(normalizeOrigin(origin));
+        return callback(ok ? null : new Error("CORS_ORIGIN_NOT_ALLOWED"), ok);
+      },
       credentials: true,
     }),
   );
