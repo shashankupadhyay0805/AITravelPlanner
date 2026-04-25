@@ -6,12 +6,12 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -n web,api -c \"cyan,magenta\" \"npm run dev -w @trao/web\" \"npm run dev -w @trao/api\"",
-    "dev:web": "npm run dev -w @trao/web",
-    "dev:api": "npm run dev -w @trao/api",
-    "build": "npm run build -w @trao/web && npm run build -w @trao/api",
-    "lint": "npm run lint -w @trao/web && npm run lint -w @trao/api",
-    "typecheck": "npm run typecheck -w @trao/web && npm run typecheck -w @trao/api"
+    "dev": "concurrently -n frontend,backend -c \"cyan,magenta\" \"npm run dev -w @trao/frontend\" \"npm run dev -w @trao/backend\"",
+    "dev:frontend": "npm run dev -w @trao/frontend",
+    "dev:backend": "npm run dev -w @trao/backend",
+    "build": "npm run build -w @trao/frontend && npm run build -w @trao/backend",
+    "lint": "npm run lint -w @trao/frontend && npm run lint -w @trao/backend",
+    "typecheck": "npm run typecheck -w @trao/frontend && npm run typecheck -w @trao/backend"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
